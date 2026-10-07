@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=ooripl-bin
+_pkgname=ooripl
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Text pipe testing sandbox allowing real-time tweaking of regex expressions."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/ooripl"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('ooripl')
+conflicts=('ooripl')
+source_x86_64=("${url}/releases/download/v${pkgver}/ooripl-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/ooripl-linux-x86_64" "${pkgdir}/usr/bin/ooripl"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/ooripl-uninstall"
+}
